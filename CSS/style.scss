@@ -1,0 +1,91 @@
+$sidebarBg:#cc9600;
+$textColor: #333;
+
+//FONT WEIGHT
+$regular: 400;
+$medium: 500;
+$bold: 700;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.textForm{
+    padding: 2rem;
+    div{
+        padding: 1rem 0 1rem 0;
+        
+        h3{
+            color: $textColor;
+            margin-bottom: 0.5rem;
+        }
+        input{
+            width: 60%;
+            padding: 0.5rem;
+            font-size: 1em;
+            background-color: #fffab8;
+            border: none
+        }
+        textarea{
+            width: 60%;
+            padding: 0.5rem;
+            resize: none;
+            font-size: 1em;
+            background-color: #fffab8;
+            border: none
+        }
+    }
+}
+
+.homeWrapper{
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    .sidebar{
+        padding: 4rem 2rem;
+        background-color: $sidebarBg;
+        height: 100vh;
+        .today, .thisWeek{
+            padding: 0.5rem 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            p{
+                padding-left: 1rem;
+                font-weight: $bold;
+                color: $textColor;
+            }
+        }
+        
+    }
+
+    .todayBox{
+        padding: 2rem;
+        .itemsWrapper{
+            
+            .singleItem{
+                display: grid;
+                padding: 0.5rem 0 0.5rem 0;
+                align-items: center;
+                grid-template-columns: 0.1fr 1fr 0.5fr;
+
+                .itemPriority{
+                    
+                }
+                .itemTitle{
+
+                }
+                .itemInteractions{
+                    align-self: end;
+                    display: flex;
+                    div{
+                      margin: 0 0.5rem 0 0.5rem;  
+                    }
+                    
+                }
+            }
+        }
+    }
+}
