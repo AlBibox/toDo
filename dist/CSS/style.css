@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.textForm {
+  padding: 2rem;
+}
+
+.textForm div {
+  padding: 1rem 0 1rem 0;
+}
+
+.textForm div h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.textForm div input {
+  width: 60%;
+  padding: 0.5rem;
+  font-size: 1em;
+  background-color: #fffab8;
+  border: none;
+}
+
+.textForm div textarea {
+  width: 60%;
+  padding: 0.5rem;
+  resize: none;
+  font-size: 1em;
+  background-color: #fffab8;
+  border: none;
+}
+
+.homeWrapper {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 8fr;
+      grid-template-columns: 2fr 8fr;
+}
+
+.homeWrapper .sidebar {
+  padding: 4rem 2rem;
+  background-color: #cc9600;
+  height: 100vh;
+}
+
+.homeWrapper .sidebar .today, .homeWrapper .sidebar .thisWeek {
+  padding: 0.5rem 0 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.homeWrapper .sidebar .today p, .homeWrapper .sidebar .thisWeek p {
+  padding-left: 1rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.homeWrapper .todayBox {
+  padding: 2rem;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem {
+  display: -ms-grid;
+  display: grid;
+  padding: 0.5rem 0 0.5rem 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: 0.1fr 1fr 0.5fr;
+      grid-template-columns: 0.1fr 1fr 0.5fr;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions {
+  -ms-flex-item-align: end;
+      align-self: end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions div {
+  margin: 0 0.5rem 0 0.5rem;
+}
+/*# sourceMappingURL=style.css.map */
