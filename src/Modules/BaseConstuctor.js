@@ -41,6 +41,7 @@ const Box = () => {
         const addOption = (optionValue, optionText) => {
             const option = document.createElement("option");
             option.setAttribute('value', optionValue);
+            option.style.backgroundImage = "url('./IMG/flag0.png')";
             option.textContent = optionText;
             select.appendChild(option);
         }

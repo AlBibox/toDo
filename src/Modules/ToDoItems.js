@@ -1,5 +1,8 @@
-const ToDoItems = (title, description, dueDate, priority, notes) => {
-    return {title, description, dueDate, priority, notes}
+import { getTime } from 'date-fns'
+import { getDeadline, todayDate, rawWeekStartDate, rawWeekEndDate, getRawDeadline } from "./dates";
+
+const ToDoItems = (title, description, deadline, priority, notes) => {
+    return {title, description, deadline, priority, notes}
 };
 
 
@@ -8,8 +11,8 @@ const ToDoList = (() => {
 
     const sortItems = () => {
        return list.sort((a, b) => {
-            let firstDate = new Date(a.dueDate);
-            let secondDate = new Date(b.dueDate);
+            let firstDate = new Date(a.deadline);
+            let secondDate = new Date(b.deadline);
             if(firstDate > secondDate) return 1;
             if (firstDate < secondDate) return -1;
             if(firstDate = secondDate){
@@ -20,25 +23,39 @@ const ToDoList = (() => {
             }
             return 0;         
         });
-    }
+    };
 
-    const addNewItem = () =>{
+    const addNewItem = () => {
         const title = document.querySelector(".title input").value;
         const description = document.querySelector(".description input").value;
-        const dueDate = document.querySelector(".dueDate input").value;
-        const priority = document.querySelector(".priority select").selectedOptions[0].value;
+        const deadline = document.querySelector(".deadline input").value;
+        const priority = document.querySelector(".priorityWrapper .selected").dataset.priority;
         const notes = document.querySelector(".notes textarea").value;
 
-        let toDO = ToDoItems(title, description, dueDate, priority, notes);
+        let toDO = ToDoItems(title, description, deadline, priority, notes);
         list.push(toDO);
         sortItems();    
     };
+
+    const removeItem = (index) => {
+        sortItems().splice(index, 1);
+    };
+
+    const getTodayItems = () =>{
+        return sortItems().filter(item => getDeadline(item.deadline) == todayDate);
+    }
+
+    
+    const getWeeklyItems = () =>{
+        return sortItems().filter(item => getTime(getRawDeadline(item.deadline)) >= getTime(rawWeekStartDate) && 
+            getTime(getRawDeadline(item.deadline)) <= getTime(rawWeekEndDate));
+    }
 
    
 
     
 
-    return {list, addNewItem}
+    return {list, addNewItem, removeItem, getTodayItems, getWeeklyItems, sortItems}
 
 })();
 
