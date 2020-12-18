@@ -1,3 +1,7 @@
+p, h1, h2, h3, h4, h5 {
+  color: #333;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +19,6 @@
 }
 
 .textForm div h3 {
-  color: #333;
   margin-bottom: 0.5rem;
 }
 
@@ -23,8 +26,34 @@
   width: 60%;
   padding: 0.5rem;
   font-size: 1em;
-  background-color: #fffab8;
+  background-color: #EDF8FA;
   border: none;
+}
+
+.textForm div .priorityWrapper {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  padding: 0;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.textForm div .priorityWrapper div {
+  padding: 0.5rem 1rem;
+  background: #EDF8FA;
+}
+
+.textForm div .priorityWrapper .selected {
+  background: #024347;
 }
 
 .textForm div textarea {
@@ -32,8 +61,18 @@
   padding: 0.5rem;
   resize: none;
   font-size: 1em;
-  background-color: #fffab8;
+  background-color: #EDF8FA;
   border: none;
+}
+
+.textForm div button {
+  cursor: pointer;
+  background-color: #024347;
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  border-style: none;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
 }
 
 .homeWrapper {
@@ -41,15 +80,15 @@
   display: grid;
   -ms-grid-columns: 2fr 8fr;
       grid-template-columns: 2fr 8fr;
+  height: 100vh;
 }
 
 .homeWrapper .sidebar {
   padding: 4rem 2rem;
-  background-color: #cc9600;
-  height: 100vh;
+  background-color: #51cdec;
 }
 
-.homeWrapper .sidebar .today, .homeWrapper .sidebar .thisWeek {
+.homeWrapper .sidebar .today, .homeWrapper .sidebar .thisWeek, .homeWrapper .sidebar .archive {
   padding: 0.5rem 0 0.5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,17 +99,16 @@
   cursor: pointer;
 }
 
-.homeWrapper .sidebar .today p, .homeWrapper .sidebar .thisWeek p {
+.homeWrapper .sidebar .today p, .homeWrapper .sidebar .thisWeek p, .homeWrapper .sidebar .archive p {
   padding-left: 1rem;
   font-weight: 700;
-  color: #333;
 }
 
-.homeWrapper .todayBox {
+.homeWrapper .todayBox, .homeWrapper .weekBox, .homeWrapper .archiveBox {
   padding: 2rem;
 }
 
-.homeWrapper .todayBox .itemsWrapper .singleItem {
+.homeWrapper .todayBox .itemsWrapper .singleItem, .homeWrapper .weekBox .itemsWrapper .singleItem, .homeWrapper .archiveBox .itemsWrapper .singleItem {
   display: -ms-grid;
   display: grid;
   padding: 0.5rem 0 0.5rem 0;
@@ -81,7 +119,7 @@
       grid-template-columns: 0.1fr 1fr 0.5fr;
 }
 
-.homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions {
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInteractions, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInteractions {
   -ms-flex-item-align: end;
       align-self: end;
   display: -webkit-box;
@@ -89,7 +127,19 @@
   display: flex;
 }
 
-.homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions div {
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions div, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInteractions div, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInteractions div {
   margin: 0 0.5rem 0 0.5rem;
+  cursor: pointer;
+}
+
+.homeWrapper .todayBox .addNewTask button, .homeWrapper .weekBox .addNewTask button, .homeWrapper .archiveBox .addNewTask button {
+  cursor: pointer;
+  background-color: #024347;
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  border-style: none;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700;
+  font-size: 1em;
 }
 /*# sourceMappingURL=style.css.map */
