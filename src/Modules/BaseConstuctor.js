@@ -10,22 +10,27 @@ const Box = () => {
     }
 
     //LABEL
-    const addLabel = (labelElement, labelContent) => {
+    const addLabel = (labelElement, labelContent, labelClass) => {
         const label = document.createElement(labelElement);
+
+        if(labelClass){
+            label.classList.add(labelClass);
+        }
+
         label.textContent = labelContent;
         wrapper.appendChild(label);
     }
 
 
     //INPUT
-    const addInput = (inputType, nameAtt, valueAtt) => {
+    const addInput = (inputType, nameAtt, value) => {
         const input = document.createElement("input");
         input.setAttribute('type', inputType);
         if (nameAtt) {
             input.setAttribute('name', nameAtt);
         }
-        if (valueAtt) {
-            input.setAttribute('value', valueAtt);
+        if (value) {
+            input.value = value;
         }
         wrapper.appendChild(input);
     }
@@ -50,11 +55,14 @@ const Box = () => {
     }
 
     //TEXTAREA
-    const addTextArea = (nameAtt) => {
+    const addTextArea = (nameAtt, value) => {
         const textarea = document.createElement("textarea");
         textarea.rows = 3;
         if (nameAtt) {
             textarea.setAttribute('name', nameAtt);
+        }
+        if (value) {
+            textarea.value = value;
         }
         wrapper.appendChild(textarea);
     }

@@ -7,30 +7,41 @@ p, h1, h2, h3, h4, h5 {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Jura", sans-serif;
 }
 
 .textForm {
+  display: -ms-grid;
+  display: grid;
   padding: 2rem;
 }
 
-.textForm div {
-  padding: 1rem 0 1rem 0;
+.textForm .containerContent {
+  padding: 2rem 0 2rem 0;
 }
 
-.textForm div h3 {
+.textForm .containerContent .title, .textForm .containerContent .description, .textForm .containerContent .deadline, .textForm .containerContent .priority, .textForm .containerContent .notes, .textForm .containerContent .buttons {
+  padding: 1rem 0 1rem;
+}
+
+.textForm .containerContent .title h3, .textForm .containerContent .description h3, .textForm .containerContent .deadline h3, .textForm .containerContent .priority h3, .textForm .containerContent .notes h3, .textForm .containerContent .buttons h3 {
   margin-bottom: 0.5rem;
 }
 
-.textForm div input {
+.textForm .containerContent .title p, .textForm .containerContent .description p, .textForm .containerContent .deadline p, .textForm .containerContent .priority p, .textForm .containerContent .notes p, .textForm .containerContent .buttons p {
+  color: #710000 !important;
+  padding-top: 0.2rem;
+}
+
+.textForm .containerContent .title input, .textForm .containerContent .description input, .textForm .containerContent .deadline input, .textForm .containerContent .priority input, .textForm .containerContent .notes input, .textForm .containerContent .buttons input {
   width: 60%;
   padding: 0.5rem;
   font-size: 1em;
-  background-color: #EDF8FA;
+  background-color: #d2f1d7;
   border: none;
 }
 
-.textForm div .priorityWrapper {
+.textForm .containerContent .title .priorityWrapper, .textForm .containerContent .description .priorityWrapper, .textForm .containerContent .deadline .priorityWrapper, .textForm .containerContent .priority .priorityWrapper, .textForm .containerContent .notes .priorityWrapper, .textForm .containerContent .buttons .priorityWrapper {
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -47,31 +58,37 @@ p, h1, h2, h3, h4, h5 {
       align-content: center;
 }
 
-.textForm div .priorityWrapper div {
+.textForm .containerContent .title .priorityWrapper div, .textForm .containerContent .description .priorityWrapper div, .textForm .containerContent .deadline .priorityWrapper div, .textForm .containerContent .priority .priorityWrapper div, .textForm .containerContent .notes .priorityWrapper div, .textForm .containerContent .buttons .priorityWrapper div {
   padding: 0.5rem 1rem;
-  background: #EDF8FA;
+  background: #d2f1d7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.textForm div .priorityWrapper .selected {
+.textForm .containerContent .title .priorityWrapper .selected, .textForm .containerContent .description .priorityWrapper .selected, .textForm .containerContent .deadline .priorityWrapper .selected, .textForm .containerContent .priority .priorityWrapper .selected, .textForm .containerContent .notes .priorityWrapper .selected, .textForm .containerContent .buttons .priorityWrapper .selected {
   background: #024347;
 }
 
-.textForm div textarea {
+.textForm .containerContent .title textarea, .textForm .containerContent .description textarea, .textForm .containerContent .deadline textarea, .textForm .containerContent .priority textarea, .textForm .containerContent .notes textarea, .textForm .containerContent .buttons textarea {
   width: 60%;
   padding: 0.5rem;
   resize: none;
   font-size: 1em;
-  background-color: #EDF8FA;
+  background-color: #d2f1d7;
   border: none;
 }
 
-.textForm div button {
+.textForm .containerContent .title button, .textForm .containerContent .description button, .textForm .containerContent .deadline button, .textForm .containerContent .priority button, .textForm .containerContent .notes button, .textForm .containerContent .buttons button {
   cursor: pointer;
   background-color: #024347;
   color: #FFF;
   padding: 0.5rem 1rem;
   border-style: none;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Jura", sans-serif;
   font-weight: 700;
 }
 
@@ -85,7 +102,7 @@ p, h1, h2, h3, h4, h5 {
 
 .homeWrapper .sidebar {
   padding: 4rem 2rem;
-  background-color: #51cdec;
+  background-color: #edfff0;
 }
 
 .homeWrapper .sidebar .today, .homeWrapper .sidebar .thisWeek, .homeWrapper .sidebar .archive {
@@ -106,6 +123,15 @@ p, h1, h2, h3, h4, h5 {
 
 .homeWrapper .todayBox, .homeWrapper .weekBox, .homeWrapper .archiveBox {
   padding: 2rem;
+  display: -ms-grid;
+  display: grid;
+  height: 100vh;
+  -ms-grid-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto;
+}
+
+.homeWrapper .todayBox .itemsWrapper, .homeWrapper .weekBox .itemsWrapper, .homeWrapper .archiveBox .itemsWrapper {
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .homeWrapper .todayBox .itemsWrapper .singleItem, .homeWrapper .weekBox .itemsWrapper .singleItem, .homeWrapper .archiveBox .itemsWrapper .singleItem {
@@ -115,8 +141,30 @@ p, h1, h2, h3, h4, h5 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-grid-columns: 0.1fr 1fr 0.5fr;
-      grid-template-columns: 0.1fr 1fr 0.5fr;
+  -ms-grid-columns: auto 1fr auto;
+      grid-template-columns: auto 1fr auto;
+  border-bottom: 1px solid  #edfff0;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemPriority, .homeWrapper .weekBox .itemsWrapper .singleItem .itemPriority, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemPriority {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInfo, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInfo, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInfo {
+  margin: 0 1rem 0 1rem;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInfo .itemTitle, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInfo .itemTitle, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInfo .itemTitle {
+  font-weight: 700;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .itemInfo .itemDeadline, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInfo .itemDeadline, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInfo .itemDeadline {
+  font-weight: 400;
 }
 
 .homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInteractions, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInteractions {
@@ -132,13 +180,21 @@ p, h1, h2, h3, h4, h5 {
   cursor: pointer;
 }
 
+.homeWrapper .todayBox .addNewTask, .homeWrapper .weekBox .addNewTask, .homeWrapper .archiveBox .addNewTask {
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
 .homeWrapper .todayBox .addNewTask button, .homeWrapper .weekBox .addNewTask button, .homeWrapper .archiveBox .addNewTask button {
   cursor: pointer;
   background-color: #024347;
   color: #FFF;
   padding: 0.5rem 1rem;
   border-style: none;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Jura", sans-serif;
   font-weight: 700;
   font-size: 1em;
 }

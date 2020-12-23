@@ -1,7 +1,7 @@
 import { Box } from './BaseConstuctor'
 import { todayDate, getDeadline } from './dates'
 import { ToDoList } from './ToDoItems'
-import { removeDOMItems } from './coreEvents'
+import { removeDOMItems, editTaskEvent } from './coreEvents'
 
 
 
@@ -10,9 +10,8 @@ function createTodayBox() {
 
     const titleBox = Box();
     titleBox.addLabel("h1", "Today");
+    titleBox.addLabel("h3", `${todayDate}`);
 
-    const dateBox = Box();
-    dateBox.addLabel("h4", `${todayDate}`);
 
     const itemsWrapper = Box();
     loadTodayItems(itemsWrapper.getWrapper());
@@ -22,8 +21,7 @@ function createTodayBox() {
     buttonsBox.addButton("+", "+");
 
     wrapper.append(
-        titleBox.getWrapper("title"),
-        dateBox.getWrapper("date"),
+        titleBox.getWrapper("titleBox"),
         itemsWrapper.getWrapper("itemsWrapper"),
         buttonsBox.getWrapper("addNewTask")
     );
@@ -41,8 +39,8 @@ function loadTodayItems(itemsWrapper) {
             itemBox.dataset.index = ToDoList.sortItems().indexOf(item);
 
             const itemBox__Info = Box();
-            itemBox__Info.addLabel("h5", `${item.title}`);
-            itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`);
+            itemBox__Info.addLabel("h5", `${item.title}`, "itemTitle");
+            itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`, "itemDeadline");
 
             const itemBox__Priority = Box();
             if(item.priority == 0){
@@ -66,6 +64,10 @@ function loadTodayItems(itemsWrapper) {
             deleteItem.getWrapper().addEventListener("click", () => {
                 removeDOMItems(itemBox.dataset.index);
                 loadTodayItems(itemsWrapper);
+            });
+
+            editItem.getWrapper().addEventListener("click", () => {
+                editTaskEvent(itemBox.dataset.index);
             });
 
 

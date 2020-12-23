@@ -1,7 +1,7 @@
 import { Box } from './BaseConstuctor'
 import { getDeadline } from './dates'
 import { ToDoList } from './ToDoItems'
-import { removeDOMItems } from './coreEvents'
+import { removeDOMItems, editTaskEvent } from './coreEvents'
 
 function createArchiveBox() {
     const wrapper = document.createElement("div");
@@ -20,7 +20,7 @@ function createArchiveBox() {
     buttonsBox.addButton("+", "+");
 
     wrapper.append(
-        titleBox.getWrapper("title"),
+        titleBox.getWrapper("titleBox"),
         //dateBox.getWrapper("date"),
         itemsWrapper.getWrapper("itemsWrapper"),
         buttonsBox.getWrapper("addNewTask")
@@ -39,8 +39,8 @@ function loadEveryItems(itemsWrapper) {
             itemBox.dataset.index = ToDoList.sortItems().indexOf(item);
 
             const itemBox__Info = Box();
-            itemBox__Info.addLabel("h5", `${item.title}`);
-            itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`);
+            itemBox__Info.addLabel("h5", `${item.title}`, "itemTitle");
+            itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`, "itemDeadline");
 
             const itemBox__Priority = Box();
             if (item.priority == 0) {
@@ -63,6 +63,10 @@ function loadEveryItems(itemsWrapper) {
             deleteItem.getWrapper().addEventListener("click", () => {
                 removeDOMItems(itemBox.dataset.index);
                 loadEveryItems(itemsWrapper);
+            });
+
+            editItem.getWrapper().addEventListener("click", () => {
+                editTaskEvent(itemBox.dataset.index);
             });
 
 

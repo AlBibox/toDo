@@ -36,6 +36,23 @@ const ToDoList = (() => {
         list.push(toDO);
         sortItems();    
     };
+    
+    const editItem = (index) => {
+        const title = document.querySelector(".title input").value;
+        const description = document.querySelector(".description input").value;
+        const deadline = document.querySelector(".deadline input").value;
+        const priority = document.querySelector(".priorityWrapper .selected").dataset.priority;
+        const notes = document.querySelector(".notes textarea").value;
+
+        let item = list[index];
+ 
+        item.title = title;
+        item.description = description;
+        item.deadline = deadline;
+        item.priority = priority;
+        item.notes = notes;
+        sortItems();
+    };
 
     const removeItem = (index) => {
         sortItems().splice(index, 1);
@@ -55,7 +72,7 @@ const ToDoList = (() => {
 
     
 
-    return {list, addNewItem, removeItem, getTodayItems, getWeeklyItems, sortItems}
+    return {list, addNewItem, removeItem, getTodayItems, getWeeklyItems, sortItems, editItem}
 
 })();
 

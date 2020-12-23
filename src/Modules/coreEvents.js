@@ -1,7 +1,7 @@
 import {ToDoList} from './ToDoItems'
 import { createWeekBox} from './boxWeek'
 import { createTodayBox } from './boxToday'
-import {createForm} from './boxForm'
+import {createForm, editForm} from './boxForm'
 import { createArchiveBox } from './boxArchive';
 
 
@@ -19,17 +19,103 @@ function addNewTaskEvent() {
 }
 
 
+function editTaskEvent(index) {
+    const mainBox = document.querySelector(".mainBox");
+    
+    mainBox.removeChild(mainBox.lastChild);
+    mainBox.appendChild(editForm(index));
+    formSelectButton();
+
+    const submitButton = document.querySelector(".textForm .buttons button");
+
+    //FORM SUBMISSION WITH VALIDATION
+    submitButton.addEventListener("click", () => {
+        const taskTitleValue = document.querySelector(".title input").value;
+        const taskDeadlineValue = document.querySelector(".deadline input").value;
+
+        const taskTitleBox = document.querySelector(".title");
+        const taskDeadlineBox = document.querySelector(".deadline");
+
+        const titleErrorCheck = document.querySelector(".title p");
+        const deadlineErrorCheck = document.querySelector(".deadline p");
+
+        if (titleErrorCheck) taskTitleBox.removeChild(titleErrorCheck);
+        if (deadlineErrorCheck) taskDeadlineBox.removeChild(deadlineErrorCheck);
+
+        //TITLE ERROR
+        if (taskTitleValue == "") {
+            const titleError = document.createElement("p");
+
+            titleError.textContent = "Enter a valid title";
+            taskTitleBox.appendChild(titleError);
+        }
+
+        //DEADLINE ERROR
+        if (taskDeadlineValue == "") {
+            const deadlineError = document.createElement("p");
+
+            deadlineError.textContent = "Enter a valid deadline";
+            taskDeadlineBox.appendChild(deadlineError);
+        }
+
+        //NO ERRORS
+        if (taskDeadlineValue != "" && taskTitleValue != "") {
+            ToDoList.editItem(index);
+            mainBox.removeChild(mainBox.lastChild);
+            mainBox.append(createArchiveBox());
+            addNewTaskEvent();
+        }
+        
+    });
+
+}
+
+
+
 function submitTaskEvent() {
     const submitButton = document.querySelector(".textForm .buttons button");
     const mainBox = document.querySelector(".mainBox");
 
+    //FORM SUBMISSION WITH VALIDATION
     submitButton.addEventListener("click", () => {
-        ToDoList.addNewItem();
-        mainBox.removeChild(mainBox.lastChild);
-        mainBox.append(createArchiveBox());
-        addNewTaskEvent();
+        const taskTitleValue = document.querySelector(".title input").value;
+        const taskDeadlineValue = document.querySelector(".deadline input").value;
+
+        const taskTitleBox = document.querySelector(".title");
+        const taskDeadlineBox = document.querySelector(".deadline");
+
+        const titleErrorCheck = document.querySelector(".title p");
+        const deadlineErrorCheck = document.querySelector(".deadline p");
+
+        if (titleErrorCheck) taskTitleBox.removeChild(titleErrorCheck);
+        if (deadlineErrorCheck) taskDeadlineBox.removeChild(deadlineErrorCheck);
+
+        //TITLE ERROR
+        if (taskTitleValue == "") {
+            const titleError = document.createElement("p");
+
+            titleError.textContent = "Enter a valid title";
+            taskTitleBox.appendChild(titleError);
+        }
+
+        //DEADLINE ERROR
+        if (taskDeadlineValue == "") {
+            const deadlineError = document.createElement("p");
+
+            deadlineError.textContent = "Enter a valid deadline";
+            taskDeadlineBox.appendChild(deadlineError);
+        }
+
+        //NO ERRORS
+        if (taskDeadlineValue != "" && taskTitleValue != "") {
+            ToDoList.addNewItem();
+            mainBox.removeChild(mainBox.lastChild);
+            mainBox.append(createArchiveBox());
+            addNewTaskEvent();
+        }
     });
 }
+
 
 
 function sidebarEvents() {
@@ -88,7 +174,7 @@ function formSelectButton() {
     
 }
 
-export {removeDOMItems, sidebarEvents, addNewTaskEvent}
+export {removeDOMItems, sidebarEvents, addNewTaskEvent, editTaskEvent}
 
 
 

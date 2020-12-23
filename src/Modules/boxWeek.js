@@ -1,7 +1,7 @@
 import { Box } from './BaseConstuctor'
 import { getDeadline, weekStartDate, weekEndDate } from './dates'
 import { ToDoList } from './ToDoItems'
-import { removeDOMItems } from './coreEvents'
+import { removeDOMItems, editTaskEvent } from './coreEvents'
 
 
 function createWeekBox() {
@@ -9,9 +9,8 @@ function createWeekBox() {
 
     const titleBox = Box();
     titleBox.addLabel("h1", "This Week");
+    titleBox.addLabel("h3", `${weekStartDate} - ${weekEndDate}`);
 
-    const dateBox = Box();
-    dateBox.addLabel("h4", `${weekStartDate} - ${weekEndDate}`);
 
     const itemsWrapper = Box();
     loadWeeklyItems(itemsWrapper.getWrapper());
@@ -20,8 +19,7 @@ function createWeekBox() {
     buttonsBox.addButton("+", "+");
 
     wrapper.append(
-        titleBox.getWrapper('title'),
-        dateBox.getWrapper('date'),
+        titleBox.getWrapper('titleBox'),
         itemsWrapper.getWrapper("itemsWrapper"),
         buttonsBox.getWrapper("addNewTask")
     );
@@ -40,8 +38,8 @@ function loadWeeklyItems(itemsWrapper) {
             itemBox.dataset.index = ToDoList.sortItems().indexOf(item);
 
             const itemBox__Info = Box();
-            itemBox__Info.addLabel("h5", `${item.title}`);
-            itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`);
+            itemBox__Info.addLabel("h5", `${item.title}`, "itemTitle");
+            itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`, "itemDeadline");
 
             const itemBox__Priority = Box();
             if (item.priority == 0) {
@@ -64,6 +62,10 @@ function loadWeeklyItems(itemsWrapper) {
             deleteItem.getWrapper().addEventListener("click", () => {
                 removeDOMItems(itemBox.dataset.index);
                 loadWeeklyItems(itemsWrapper);
+            });
+
+            editItem.getWrapper().addEventListener("click", () => {
+                editTaskEvent(itemBox.dataset.index);
             });
 
 
