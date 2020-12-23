@@ -1,8 +1,11 @@
-$sidebarBg:#51cdec;
+$sidebarBg: #edfff0;
 $buttonColor: #024347;
-$formInputs: #EDF8FA;
+$formInputs: #d2f1d7;
 $textColor: #333;
 $textColorLight: #FFF;
+$errorText: #710000;
+
+$font: 'Jura', sans-serif;
 
 //FONT WEIGHT
 $regular: 400;
@@ -17,62 +20,85 @@ p, h1, h2, h3, h4, h5{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: $font;
 }
 
 .textForm{
+    display:grid;
     padding: 2rem;
-    div{
-        padding: 1rem 0 1rem 0;
+    .containerTitle{
+        //padding: 0.5rem 0 0.5rem 0;
+    }
+    .containerContent{
+        padding: 2rem 0 2rem 0;
         
-        h3{
+
+        .title, .description, .deadline, .priority, .notes, .buttons{
+
+            padding: 1rem 0 1rem;
+
+            h3{
             margin-bottom: 0.5rem;
-        }
-        input{
-            width: 60%;
-            padding: 0.5rem;
-            font-size: 1em;
-            background-color: $formInputs;
-            border: none
-        }
-
-        .priorityWrapper{
-            cursor: pointer; 
-            display: flex;
-            //border-radius: 8px;
-            overflow: hidden;
-            padding: 0;
-            width: min-content;
-            height: min-content;
-            align-content: center;
-            div{
-                padding: 0.5rem 1rem;
-                background: #EDF8FA;
             }
-            .selected{
-                background: $buttonColor;
-            }
-        }
 
-        textarea{
-            width: 60%;
-            padding: 0.5rem;
-            resize: none;
-            font-size: 1em;
-            background-color: $formInputs;
-            border: none
-        }
+            //ERROR MESSAGE
+            p{
+            color: $errorText !important;
+            padding-top: 0.2rem;
+            }
+
+            
+            input{
+                width: 60%;
+                padding: 0.5rem;
+                font-size: 1em;
+                background-color: $formInputs;
+                border: none
+            }
+
+            .priorityWrapper{
+                cursor: pointer; 
+                display: flex;
+                //border-radius: 8px;
+                overflow: hidden;
+                padding: 0;
+                width: min-content;
+                height: min-content;
+                align-content: center;
+                div{
+                 padding: 0.5rem 1rem;
+                 background: $formInputs;
+                 display: flex;
+                 align-items: center;
+                }
+                .selected{
+                    background: $buttonColor;
+                }
+            }
+
+            textarea{
+                width: 60%;
+                padding: 0.5rem;
+                resize: none;
+                font-size: 1em;
+                background-color: $formInputs;
+                border: none
+            }
 
         
-        button{
-            cursor: pointer;
-            background-color: $buttonColor;
-            color: $textColorLight;
-            padding: 0.5rem 1rem;
-            border-style: none;
-            font-family: 'Ubuntu', sans-serif;
-            font-weight: $bold;
+            button{
+                cursor: pointer;
+                background-color: $buttonColor;
+                color: $textColorLight;
+                padding: 0.5rem 1rem;
+                border-style: none;
+                font-family: $font;
+                font-weight: $bold;
+            }
+
         }
+        
+        
         
   
     }
@@ -101,18 +127,39 @@ p, h1, h2, h3, h4, h5{
 
     .todayBox, .weekBox, .archiveBox{
         padding: 2rem;
+        display:grid;
+        height: 100vh;
+        grid-template-rows: auto 1fr auto;
+
+        .titleBox{
+            
+            
+
+        }
+
         .itemsWrapper{
+            margin: 0.5rem 0 0.5rem 0;
             
             .singleItem{
                 display: grid;
                 padding: 0.5rem 0 0.5rem 0;
                 align-items: center;
-                grid-template-columns: 0.1fr 1fr 0.5fr;
+                grid-template-columns: auto 1fr auto;
+                border-bottom: 1px solid  #edfff0;
 
                 .itemPriority{
+                    display:flex;
+                    align-items: center;
                     
                 }
-                .itemTitle{
+                .itemInfo{
+                    margin: 0 1rem 0 1rem;
+                    .itemTitle{
+                        font-weight: $bold;
+                    }
+                    .itemDeadline{
+                        font-weight: $regular;
+                    }
 
                 }
                 .itemInteractions{
@@ -128,13 +175,15 @@ p, h1, h2, h3, h4, h5{
         }
 
         .addNewTask{
+            align-self: end;
+            justify-self: end;
             button{
                 cursor: pointer;
                 background-color: $buttonColor;
                 color: $textColorLight;
                 padding: 0.5rem 1rem;
                 border-style: none;
-                font-family: 'Ubuntu', sans-serif;
+                font-family: $font;
                 font-weight: $bold;
                 font-size: 1em;
             }
