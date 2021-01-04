@@ -29,7 +29,7 @@ p, h1, h2, h3, h4, h5 {
 }
 
 .textForm .containerContent .title p, .textForm .containerContent .description p, .textForm .containerContent .deadline p, .textForm .containerContent .priority p, .textForm .containerContent .notes p, .textForm .containerContent .buttons p {
-  color: #710000 !important;
+  color: #db482e !important;
   padding-top: 0.2rem;
 }
 
@@ -165,6 +165,14 @@ p, h1, h2, h3, h4, h5 {
 
 .homeWrapper .todayBox .itemsWrapper .singleItem .itemInfo .itemDeadline, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInfo .itemDeadline, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInfo .itemDeadline {
   font-weight: 400;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .expired .itemTitle, .homeWrapper .weekBox .itemsWrapper .singleItem .expired .itemTitle, .homeWrapper .archiveBox .itemsWrapper .singleItem .expired .itemTitle {
+  color: #db482e !important;
+}
+
+.homeWrapper .todayBox .itemsWrapper .singleItem .expired .itemDeadline, .homeWrapper .weekBox .itemsWrapper .singleItem .expired .itemDeadline, .homeWrapper .archiveBox .itemsWrapper .singleItem .expired .itemDeadline {
+  color: #db482e !important;
 }
 
 .homeWrapper .todayBox .itemsWrapper .singleItem .itemInteractions, .homeWrapper .weekBox .itemsWrapper .singleItem .itemInteractions, .homeWrapper .archiveBox .itemsWrapper .singleItem .itemInteractions {

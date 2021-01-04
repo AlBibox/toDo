@@ -3,7 +3,7 @@ $buttonColor: #024347;
 $formInputs: #d2f1d7;
 $textColor: #333;
 $textColorLight: #FFF;
-$errorText: #710000;
+$errorText: #db482e;
 
 $font: 'Jura', sans-serif;
 
@@ -131,12 +131,6 @@ p, h1, h2, h3, h4, h5{
         height: 100vh;
         grid-template-rows: auto 1fr auto;
 
-        .titleBox{
-            
-            
-
-        }
-
         .itemsWrapper{
             margin: 0.5rem 0 0.5rem 0;
             
@@ -152,6 +146,7 @@ p, h1, h2, h3, h4, h5{
                     align-items: center;
                     
                 }
+
                 .itemInfo{
                     margin: 0 1rem 0 1rem;
                     .itemTitle{
@@ -160,8 +155,18 @@ p, h1, h2, h3, h4, h5{
                     .itemDeadline{
                         font-weight: $regular;
                     }
-
                 }
+
+                .expired{
+                    .itemTitle{
+                        color: $errorText !important;
+                    }
+                    .itemDeadline{
+                        color: $errorText !important
+                    }
+                }
+
+                
                 .itemInteractions{
                     align-self: end;
                     display: flex;
@@ -190,3 +195,4 @@ p, h1, h2, h3, h4, h5{
         }
     }
 }
+
