@@ -1,6 +1,7 @@
 import { Box } from './BaseConstuctor'
-import { getDeadline, weekStartDate, weekEndDate } from './dates'
-import { ToDoList } from './ToDoItems'
+import { getTime } from 'date-fns'
+import { getDeadline, weekStartDate, weekEndDate, getRawDeadline, rawTodayDate } from './dates'
+import { Storage } from './localStorage'
 import { removeDOMItems, editTaskEvent } from './coreEvents'
 
 
@@ -10,7 +11,6 @@ function createWeekBox() {
     const titleBox = Box();
     titleBox.addLabel("h1", "This Week");
     titleBox.addLabel("h3", `${weekStartDate} - ${weekEndDate}`);
-
 
     const itemsWrapper = Box();
     loadWeeklyItems(itemsWrapper.getWrapper());
@@ -32,14 +32,18 @@ function createWeekBox() {
 
 function loadWeeklyItems(itemsWrapper) {
 
-    if (ToDoList.getWeeklyItems().length >= 1) {
-        ToDoList.getWeeklyItems().forEach(item => {
+    if (Storage.getWeeklyItems().length >= 1) {
+        Storage.getWeeklyItems().forEach(item => {
             const itemBox = document.createElement("div");
-            itemBox.dataset.index = ToDoList.sortItems().indexOf(item);
+            itemBox.dataset.index = Storage.sortItems().indexOf(item);
 
             const itemBox__Info = Box();
             itemBox__Info.addLabel("h5", `${item.title}`, "itemTitle");
             itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`, "itemDeadline");
+
+            if (getTime(getRawDeadline(item.deadline)) < getTime(rawTodayDate)) {
+                itemBox__Info.getWrapper().classList.add("expired");
+            }
 
             const itemBox__Priority = Box();
             if (item.priority == 0) {

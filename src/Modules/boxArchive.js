@@ -1,6 +1,7 @@
 import { Box } from './BaseConstuctor'
-import { getDeadline } from './dates'
-import { ToDoList } from './ToDoItems'
+import { getTime } from 'date-fns'
+import { getDeadline, getRawDeadline, rawTodayDate } from './dates'
+import { Storage } from './localStorage'
 import { removeDOMItems, editTaskEvent } from './coreEvents'
 
 function createArchiveBox() {
@@ -8,9 +9,6 @@ function createArchiveBox() {
 
     const titleBox = Box();
     titleBox.addLabel("h1", "Archive");
-
-    //const dateBox = Box();
-    //dateBox.addLabel("h4", `${todayDate}`);
 
     const itemsWrapper = Box();
     loadEveryItems(itemsWrapper.getWrapper());
@@ -21,7 +19,6 @@ function createArchiveBox() {
 
     wrapper.append(
         titleBox.getWrapper("titleBox"),
-        //dateBox.getWrapper("date"),
         itemsWrapper.getWrapper("itemsWrapper"),
         buttonsBox.getWrapper("addNewTask")
     );
@@ -33,14 +30,18 @@ function createArchiveBox() {
 
 function loadEveryItems(itemsWrapper) {
 
-    if (ToDoList.sortItems().length >= 1) {
-        ToDoList.sortItems().forEach(item => {
+    if (Storage.sortItems().length >= 1) {
+        Storage.sortItems().forEach(item => {
             const itemBox = document.createElement("div");
-            itemBox.dataset.index = ToDoList.sortItems().indexOf(item);
+            itemBox.dataset.index = Storage.sortItems().indexOf(item);
 
             const itemBox__Info = Box();
             itemBox__Info.addLabel("h5", `${item.title}`, "itemTitle");
             itemBox__Info.addLabel("h5", `DEADLINE: ${getDeadline(item.deadline)}`, "itemDeadline");
+
+            if (getTime(getRawDeadline(item.deadline)) < getTime(rawTodayDate)) {
+                itemBox__Info.getWrapper().classList.add("expired");
+            }
 
             const itemBox__Priority = Box();
             if (item.priority == 0) {

@@ -1,9 +1,8 @@
-import {ToDoList} from './ToDoItems'
+import { Storage } from './localStorage'
 import { createWeekBox} from './boxWeek'
 import { createTodayBox } from './boxToday'
 import {createForm, editForm} from './boxForm'
 import { createArchiveBox } from './boxArchive';
-
 
 
 function addNewTaskEvent() {
@@ -60,7 +59,7 @@ function editTaskEvent(index) {
 
         //NO ERRORS
         if (taskDeadlineValue != "" && taskTitleValue != "") {
-            ToDoList.editItem(index);
+            Storage.editItem(index);
             mainBox.removeChild(mainBox.lastChild);
             mainBox.append(createArchiveBox());
             addNewTaskEvent();
@@ -108,7 +107,7 @@ function submitTaskEvent() {
 
         //NO ERRORS
         if (taskDeadlineValue != "" && taskTitleValue != "") {
-            ToDoList.addNewItem();
+            Storage.addItem();
             mainBox.removeChild(mainBox.lastChild);
             mainBox.append(createArchiveBox());
             addNewTaskEvent();
@@ -153,7 +152,8 @@ function removeDOMItems (index) {
 
     
     if (itemsWrapper) {
-        ToDoList.removeItem(index);
+        Storage.removeItem(index);
+        
 
         while (itemsWrapper.firstChild) {
             itemsWrapper.removeChild(itemsWrapper.lastChild);
@@ -164,7 +164,6 @@ function removeDOMItems (index) {
 
 function formSelectButton() {
     const priorityButtons = document.querySelectorAll(".priorityWrapper div");
-    console.log("test");
     if(priorityButtons){
         priorityButtons.forEach(button => button.addEventListener("click", () => {
             priorityButtons.forEach(e => e.classList.remove("selected"));

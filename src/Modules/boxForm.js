@@ -1,5 +1,5 @@
 import {Box} from './BaseConstuctor'
-import { ToDoList } from './ToDoItems';
+import { Storage } from './localStorage';
 
 
 function createForm() {
@@ -91,7 +91,8 @@ function createForm() {
 
 function editForm (index) {
     const container = document.createElement("div"); //formContainer
-    let item = ToDoList.sortItems()[index];
+    //let item = ToDoList.sortItems()[index];
+    let item = Storage.sortItems()[index];
 
     let containerTitle = Box();
     containerTitle.addLabel("h1", "Task Editor");
